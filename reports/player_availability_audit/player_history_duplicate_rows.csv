@@ -1,0 +1,91 @@
+season,player_code,element_id,player_name,position,player_team_id,player_team,opponent_team_id,opponent_team,fixture_id,gameweek,kickoff_utc,was_home,minutes,started,goals,assists,xG,xA,team_source,season_norm,started_bool,was_home_bool,player_key
+2023-24,501284.0,620.0,Michael Olakigbe,MID,4,Brentford,18,Spurs,8,1,2023-08-13 13:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:501284.0
+2023-24,501284.0,620.0,Michale Olakigbe,MID,4,Brentford,18,Spurs,8,1,2023-08-13 13:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:501284.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,18,Spurs,8,1,2023-08-13 13:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,18,Spurs,8,1,2023-08-13 13:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,501284.0,620.0,Michael Olakigbe,MID,4,Brentford,10,Fulham,13,2,2023-08-19 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:501284.0
+2023-24,501284.0,620.0,Michale Olakigbe,MID,4,Brentford,10,Fulham,13,2,2023-08-19 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:501284.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,10,Fulham,13,2,2023-08-19 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,10,Fulham,13,2,2023-08-19 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,501284.0,620.0,Michael Olakigbe,MID,4,Brentford,8,Crystal Palace,23,3,2023-08-26 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:501284.0
+2023-24,501284.0,620.0,Michale Olakigbe,MID,4,Brentford,8,Crystal Palace,23,3,2023-08-26 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:501284.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,8,Crystal Palace,23,3,2023-08-26 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,8,Crystal Palace,23,3,2023-08-26 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,501284.0,620.0,Michael Olakigbe,MID,4,Brentford,3,Bournemouth,32,4,2023-09-02 14:00:00+00:00,True,8,False,0,0,0.04,0.01,fixture,2023-24,False,True,code:501284.0
+2023-24,501284.0,620.0,Michale Olakigbe,MID,4,Brentford,3,Bournemouth,32,4,2023-09-02 14:00:00+00:00,True,8,False,0,0,0.04,0.01,fixture,2023-24,False,True,code:501284.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,3,Bournemouth,32,4,2023-09-02 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,3,Bournemouth,32,4,2023-09-02 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,16,Nott'm Forest,35,4,2023-09-02 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,16,Nott'm Forest,35,4,2023-09-02 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,15,Newcastle,46,5,2023-09-16 16:30:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,15,Newcastle,46,5,2023-09-16 16:30:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,3,Bournemouth,42,5,2023-09-17 13:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,3,Bournemouth,42,5,2023-09-17 13:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,9,Everton,52,6,2023-09-23 16:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,9,Everton,52,6,2023-09-23 16:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,2,Aston Villa,55,6,2023-09-24 13:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,2,Aston Villa,55,6,2023-09-24 13:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,16,Nott'm Forest,67,7,2023-10-01 13:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,16,Nott'm Forest,67,7,2023-10-01 13:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,10,Fulham,64,7,2023-10-02 19:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,10,Fulham,64,7,2023-10-02 19:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,6,Burnley,73,8,2023-10-07 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,6,Burnley,73,8,2023-10-07 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,14,Man Utd,78,8,2023-10-07 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,14,Man Utd,78,8,2023-10-07 14:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,6,Burnley,83,9,2023-10-21 14:00:00+00:00,True,14,False,0,0,0.09,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,6,Burnley,83,9,2023-10-21 14:00:00+00:00,True,14,False,0,0,0.09,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,1,Arsenal,84,9,2023-10-21 16:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,1,Arsenal,84,9,2023-10-21 16:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,7,Chelsea,95,10,2023-10-28 11:30:00+00:00,False,14,False,0,0,0.49,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,7,Chelsea,95,10,2023-10-28 11:30:00+00:00,False,14,False,0,0,0.49,0.0,fixture,2023-24,False,False,code:508395.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,4,Brentford,95,10,2023-10-28 11:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,4,Brentford,95,10,2023-10-28 11:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,508395.0,120.0,Yegor Yarmoliuk,MID,4,Brentford,19,West Ham,101,11,2023-11-04 15:00:00+00:00,True,12,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,508395.0,120.0,Yegor Yarmolyuk,MID,4,Brentford,19,West Ham,101,11,2023-11-04 15:00:00+00:00,True,12,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:508395.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,18,Spurs,110,11,2023-11-06 20:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,18,Spurs,110,11,2023-11-06 20:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,13,Man City,115,12,2023-11-12 16:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,13,Man City,115,12,2023-11-12 16:30:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,15,Newcastle,127,13,2023-11-25 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,15,Newcastle,127,13,2023-11-25 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,5,Brighton,135,14,2023-12-03 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,5,Brighton,135,14,2023-12-03 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,14,Man Utd,150,15,2023-12-06 20:15:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,14,Man Utd,150,15,2023-12-06 20:15:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,9,Everton,154,16,2023-12-10 14:00:00+00:00,False,6,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,9,Everton,154,16,2023-12-10 14:00:00+00:00,False,6,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,17,Sheffield Utd,165,17,2023-12-16 15:00:00+00:00,True,90,True,0,0,0.0,0.0,fixture,2023-24,True,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,17,Sheffield Utd,165,17,2023-12-16 15:00:00+00:00,True,90,True,0,0,0.0,0.0,fixture,2023-24,True,True,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,20,Wolves,180,18,2023-12-24 13:00:00+00:00,False,90,True,0,0,0.0,0.0,fixture,2023-24,True,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,20,Wolves,180,18,2023-12-24 13:00:00+00:00,False,90,True,0,0,0.0,0.0,fixture,2023-24,True,False,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,8,Crystal Palace,186,19,2023-12-27 19:30:00+00:00,True,90,True,0,0,0.0,0.0,fixture,2023-24,True,True,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,8,Crystal Palace,186,19,2023-12-27 19:30:00+00:00,True,90,True,0,0,0.0,0.0,fixture,2023-24,True,True,code:457569.0
+2023-24,457569.0,687.0,Djordje Petrovic,GKP,7,Chelsea,12,Luton,195,20,2023-12-30 12:30:00+00:00,False,90,True,0,0,0.0,0.0,fixture,2023-24,True,False,code:457569.0
+2023-24,457569.0,687.0,Đorđe Petrović,GKP,7,Chelsea,12,Luton,195,20,2023-12-30 12:30:00+00:00,False,90,True,0,0,0.0,0.0,fixture,2023-24,True,False,code:457569.0
+2023-24,496683.0,802.0,Max Kinsey-Wellings,DEF,3,Bournemouth,19,West Ham,217,22,2024-02-01 19:30:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:496683.0
+2023-24,496683.0,802.0,Max Kinsey,DEF,3,Bournemouth,19,West Ham,217,22,2024-02-01 19:30:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:496683.0
+2023-24,496683.0,802.0,Max Kinsey-Wellings,DEF,3,Bournemouth,16,Nott'm Forest,222,23,2024-02-04 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:496683.0
+2023-24,496683.0,802.0,Max Kinsey,DEF,3,Bournemouth,16,Nott'm Forest,222,23,2024-02-04 14:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2023-24,False,True,code:496683.0
+2023-24,496683.0,802.0,Max Kinsey-Wellings,DEF,3,Bournemouth,10,Fulham,233,24,2024-02-10 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:496683.0
+2023-24,496683.0,802.0,Max Kinsey,DEF,3,Bournemouth,10,Fulham,233,24,2024-02-10 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:496683.0
+2023-24,496683.0,802.0,Max Kinsey-Wellings,DEF,3,Bournemouth,15,Newcastle,247,25,2024-02-17 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:496683.0
+2023-24,496683.0,802.0,Max Kinsey,DEF,3,Bournemouth,15,Newcastle,247,25,2024-02-17 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2023-24,False,False,code:496683.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,15,Newcastle,228,23,2025-01-25 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,15,Newcastle,228,23,2025-01-25 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,10,Ipswich,236,24,2025-02-01 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,10,Ipswich,236,24,2025-02-01 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,3,Bournemouth,248,25,2025-02-15 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,3,Bournemouth,248,25,2025-02-15 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,5,Brighton,260,26,2025-02-22 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,5,Brighton,260,26,2025-02-22 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,6,Chelsea,268,27,2025-02-25 20:15:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,6,Chelsea,268,27,2025-02-25 20:15:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,12,Liverpool,275,28,2025-03-08 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,12,Liverpool,275,28,2025-03-08 15:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,20,Wolves,290,29,2025-03-15 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,20,Wolves,290,29,2025-03-15 15:00:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,7,Crystal Palace,300,30,2025-04-02 18:45:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,7,Crystal Palace,300,30,2025-04-02 18:45:00+00:00,True,0,False,0,0,0.0,0.0,fixture,2024-25,False,True,code:100047426.0
+2024-25,100047426.0,748.0,Ivan Juric,,17,Southampton,18,Spurs,309,31,2025-04-06 13:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0
+2024-25,100047426.0,748.0,Simon Rusk,,17,Southampton,18,Spurs,309,31,2025-04-06 13:00:00+00:00,False,0,False,0,0,0.0,0.0,fixture,2024-25,False,False,code:100047426.0

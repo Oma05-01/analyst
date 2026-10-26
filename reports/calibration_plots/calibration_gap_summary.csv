@@ -1,0 +1,7 @@
+model,outcome,n,weighted_absolute_calibration_gap
+baseline_poisson_v1,AWAY,1516,0.0071090962
+baseline_poisson_v1,DRAW,1516,0.018249846
+baseline_poisson_v1,HOME,1516,0.01114075
+dixon_coles_v2,AWAY,1516,0.012921151
+dixon_coles_v2,DRAW,1516,0.0078154924
+dixon_coles_v2,HOME,1516,0.019642681

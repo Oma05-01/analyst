@@ -1,0 +1,4 @@
+season,rows,fixtures_in_file,kickoff_missing_rate,started_known_rate,xG_known_rate,xA_known_rate,xG_xA_both_known_rate,team_name_missing_rate,duplicate_player_fixture_rows,team_fixture_groups,team_groups_with_exactly_11_known_starters,team_XI_valid_rate,fixtures_with_both_XIs_ready,fixture_XI_ready_rate
+2022-23,26505,380,0.0,1.0,1.0,1.0,1.0,0.0,0,760,760,1.0,380,1.0
+2023-24,29761,380,0.0,1.0,1.0,1.0,1.0,0.0,72,760,756,0.9947368421052631,376,0.9894736842105263
+2024-25,27614,380,0.0,1.0,1.0,1.0,1.0,0.0,18,760,760,1.0,380,1.0

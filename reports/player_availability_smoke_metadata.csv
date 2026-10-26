@@ -1,0 +1,2 @@
+theta,theta_training_matches,theta_training_feature_matches,evaluation_dates_considered,matches_evaluated,excluded_feature_unready,excluded_feature_unready_by_season,cold_start_baseline_fallbacks,insufficient_history_skipped,feature_scaler_mean,feature_scaler_std,database_vs_fpl_date_mismatches,min_train_matches,feature_scaler_n_team_values
+0.04020734639,3040,340,4,10,4,"{'2023-2024': 3, '2024-2025': 1}",0,0,0.02406235429,0.2001332504,0,200,340

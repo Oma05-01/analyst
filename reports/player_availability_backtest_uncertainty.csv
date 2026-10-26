@@ -1,0 +1,4 @@
+metric,n,mean_player_minus_raw,ci95_lower,ci95_upper,bootstrap_reps,cluster_unit
+brier,744,-0.00122865907,-0.003361726116,0.0009432783123,5000,season_utc_match_date
+rps,744,-0.0006815620278,-0.001657657537,0.0003226839482,5000,season_utc_match_date
+log_loss,744,-0.001736873846,-0.00472489688,0.001380868675,5000,season_utc_match_date

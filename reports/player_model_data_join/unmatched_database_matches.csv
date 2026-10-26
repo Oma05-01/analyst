@@ -1,0 +1,2 @@
+match_id,season,matchweek,database_kickoff_utc,database_status,database_home_team,database_away_team,home_goals,away_goals,database_season_key,database_home_key,database_away_key,actual_outcome
+7233,2026-2027,8,2026-10-23 19:00:00+00:00,FINISHED,Ipswich,Nottingham Forest,1,1,2026-2027,ipswich,nottingham forest,DRAW
