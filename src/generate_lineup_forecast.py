@@ -494,6 +494,27 @@ def make_forecast(engine, match_id: int, lineup_type: str,
     if canonical_team(snapshot.get("away_team", "")) != canonical_team(fixture["away_team"]):
         raise ValueError("Saved lineup away team does not match the database fixture")
 
+    home_fpl = snapshot.get("home_fpl_team") or {}
+    away_fpl = snapshot.get("away_fpl_team") or {}
+
+    if canonical_team(str(home_fpl.get("name", ""))) != canonical_team(
+        str(fixture["home_team"])
+    ):
+        raise ValueError(
+            f"Home FPL roster mismatch: fixture is "
+            f"{fixture['home_team']}, but snapshot uses "
+            f"{home_fpl.get('name', 'missing roster')}"
+        )
+
+    if canonical_team(str(away_fpl.get("name", ""))) != canonical_team(
+        str(fixture["away_team"])
+    ):
+        raise ValueError(
+            f"Away FPL roster mismatch: fixture is "
+            f"{fixture['away_team']}, but snapshot uses "
+            f"{away_fpl.get('name', 'missing roster')}"
+        )
+
     history = load_player_history(dataset_path, target_date)
     player_state, position_state = build_weighted_rates(history, target_date)
     feature_history = load_features(features_path, target_date)

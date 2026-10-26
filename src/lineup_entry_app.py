@@ -378,15 +378,43 @@ if existing_record:
 else:
     st.info(f"No {lineup_type.replace('_', ' ')} snapshot exists yet for this fixture.")
 
-home_suggest = suggested_fpl_team(str(fixture["home_team"]), fpl_team_names)
-home_index = fpl_team_names.index(home_suggest) if home_suggest in fpl_team_names else 0
-home_fpl_name = st.selectbox("FPL roster for home team", fpl_team_names, index=home_index,
-                             key=f"home_fpl_team_{selected_match_id}")
-away_options = [name for name in fpl_team_names if name != home_fpl_name]
-away_suggest = suggested_fpl_team(str(fixture["away_team"]), away_options)
-away_index = away_options.index(away_suggest) if away_suggest in away_options else 0
-away_fpl_name = st.selectbox("FPL roster for away team", away_options, index=away_index,
-                             key=f"away_fpl_team_{selected_match_id}_{home_fpl_name}")
+home_suggest = suggested_fpl_team(
+    str(fixture["home_team"]),
+    fpl_team_names,
+)
+away_suggest = suggested_fpl_team(
+    str(fixture["away_team"]),
+    fpl_team_names,
+)
+
+# Stop instead of guessing if either roster cannot be matched.
+if home_suggest is None:
+    st.error(
+        f"Could not confidently match '{fixture['home_team']}' "
+        "to an FPL roster. Check TEAM_ALIASES in "
+        "lineup_entry_app.py."
+    )
+    st.stop()
+
+if away_suggest is None:
+    st.error(
+        f"Could not confidently match '{fixture['away_team']}' "
+        "to an FPL roster. Check TEAM_ALIASES in "
+        "lineup_entry_app.py."
+    )
+    st.stop()
+
+# Enforce the automatically matched rosters.
+# No manual roster dropdowns, so the teams cannot be accidentally swapped.
+home_fpl_name = home_suggest
+away_fpl_name = away_suggest
+
+st.caption(
+    f"Home: {fixture['home_team']} | FPL roster: {home_fpl_name}"
+)
+st.caption(
+    f"Away: {fixture['away_team']} | FPL roster: {away_fpl_name}"
+)
 
 if normalise_team(home_fpl_name) == normalise_team(away_fpl_name):
     st.error("Home and away sides cannot use the same FPL team roster.")
