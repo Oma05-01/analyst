@@ -226,46 +226,123 @@ def existing_ids(existing_lineup: list[dict[str, Any]] | None, position: str) ->
     return result
 
 
-def render_xi(team_players: pd.DataFrame, label: str, key_prefix: str,
-              existing_lineup: list[dict[str, Any]] | None) -> list[int]:
+def render_xi(
+    team_players: pd.DataFrame,
+    label: str,
+    key_prefix: str,
+    existing_lineup: list[dict[str, Any]] | None,
+) -> tuple[list[int], dict[int, str]]:
     st.subheader(label)
-    labels = player_label_map(team_players)
-    selected: list[int] = []
 
+    labels = player_label_map(team_players)
+    indexed = team_players.set_index("id", drop=False)
+
+    existing_by_id = {}
+    for player in existing_lineup or []:
+        try:
+            existing_by_id[int(player["element_id"])] = player
+        except (KeyError, TypeError, ValueError):
+            continue
+
+    # Keep the goalkeeper slot tied to the registered goalkeeper roster.
     gk_options = ids_for_position(team_players, "GKP")
     if not gk_options:
         st.error(f"No goalkeepers were found in the selected FPL roster for {label}.")
-        return []
+        return [], {}
+
     old_gk = existing_ids(existing_lineup, "GKP")
     gk_default = old_gk[0] if old_gk and old_gk[0] in gk_options else gk_options[0]
-    gk = st.selectbox("Goalkeeper (1)", gk_options, index=gk_options.index(gk_default),
-                      format_func=lambda pid: labels.get(int(pid), str(pid)),
-                      key=f"{key_prefix}_gkp")
-    selected.append(int(gk))
 
-    position_constraints = [
-        ("DEF", "Defenders (choose 3–5)", 3, 5),
-        ("MID", "Midfielders (choose 2–5)", 2, 5),
-        ("FWD", "Forwards (choose 1–3)", 1, 3),
+    gk = st.selectbox(
+        "Goalkeeper (1)",
+        gk_options,
+        index=gk_options.index(gk_default),
+        format_func=lambda pid: labels.get(int(pid), str(pid)),
+        key=f"{key_prefix}_gkp",
+    )
+
+    # All registered outfield players are eligible, regardless of FPL position.
+    outfield_players = team_players.loc[
+        team_players["position"].ne("GKP")
     ]
-    for position, title, min_count, max_count in position_constraints:
-        options = ids_for_position(team_players, position)
-        old = [pid for pid in existing_ids(existing_lineup, position) if pid in options]
-        chosen = st.multiselect(title, options, default=old, max_selections=max_count,
-                                format_func=lambda pid, lm=labels: lm.get(int(pid), str(pid)),
-                                key=f"{key_prefix}_{position.lower()}")
-        if len(chosen) < min_count:
-            st.caption(f"Select at least {min_count} {position.lower()} players.")
-        selected.extend(int(pid) for pid in chosen)
-    st.caption(f"Selected players: {len(selected)} / 11")
-    return selected
+    outfield_options = sorted(int(pid) for pid in outfield_players["id"])
 
+    old_outfield = []
+    for player in existing_lineup or []:
+        try:
+            pid = int(player["element_id"])
+            if pid in outfield_options:
+                old_outfield.append(pid)
+        except (KeyError, TypeError, ValueError):
+            continue
 
-def serialise_lineup(selected_ids: list[int], team_players: pd.DataFrame) -> list[dict[str, Any]]:
+    selected_outfield = st.multiselect(
+        "Outfield players (choose 10)",
+        outfield_options,
+        default=old_outfield[:10],
+        max_selections=10,
+        format_func=lambda pid: labels.get(int(pid), str(pid)),
+        key=f"{key_prefix}_outfield",
+    )
+
+    # Assign each selected player a match-specific tactical role.
+    role_options = ["DEF", "MID", "FWD"]
+    playing_positions: dict[int, str] = {int(gk): "GKP"}
+
+    if selected_outfield:
+        st.markdown("**Assign playing positions**")
+        st.caption(
+            "The position in brackets is the player's FPL registration. "
+            "Choose the role they are expected to play in this match."
+        )
+
+        for pid in selected_outfield:
+            pid = int(pid)
+            player = indexed.loc[pid]
+            fpl_position = str(player["position"])
+
+            old_player = existing_by_id.get(pid, {})
+            old_role = old_player.get("playing_position") or old_player.get("position")
+
+            if old_role not in role_options:
+                old_role = fpl_position if fpl_position in role_options else "MID"
+
+            role = st.selectbox(
+                f"{player['player_name']} ({fpl_position})",
+                role_options,
+                index=role_options.index(old_role),
+                key=f"{key_prefix}_role_{pid}",
+            )
+            playing_positions[pid] = role
+
+    selected_ids = [int(gk)] + [int(pid) for pid in selected_outfield]
+
+    role_counts = {
+        role: sum(1 for value in playing_positions.values() if value == role)
+        for role in ["DEF", "MID", "FWD"]
+    }
+
+    st.caption(
+        f"Selected players: {len(selected_ids)} / 11 | "
+        f"DEF {role_counts['DEF']} · "
+        f"MID {role_counts['MID']} · "
+        f"FWD {role_counts['FWD']}"
+    )
+
+    return selected_ids, playing_positions
+
+def serialise_lineup(
+    selected_ids: list[int],
+    team_players: pd.DataFrame,
+    playing_positions: dict[int, str],
+) -> list[dict[str, Any]]:
     indexed = team_players.set_index("id", drop=False)
     result = []
+
     for pid in selected_ids:
-        row = indexed.loc[int(pid)]
+        pid = int(pid)
+        row = indexed.loc[pid]
+
         code = row.get("player_code")
         if pd.isna(code):
             code = None
@@ -274,14 +351,23 @@ def serialise_lineup(selected_ids: list[int], team_players: pd.DataFrame) -> lis
                 code = int(code)
             except (TypeError, ValueError):
                 code = str(code)
+
+        fpl_position = str(row["position"])
+
         result.append({
-            "element_id": int(row["id"]),
+            "element_id": pid,
             "player_code": code,
             "player_name": str(row["player_name"]),
-            "position": str(row["position"]),
-        })
-    return result
 
+            # Retain the original field for compatibility.
+            "position": fpl_position,
+
+            # Explicitly preserve registration and match role separately.
+            "fpl_position": fpl_position,
+            "playing_position": playing_positions[pid],
+        })
+
+    return result
 
 def save_append_only(record: dict[str, Any]) -> None:
     LINEUP_STORE.parent.mkdir(parents=True, exist_ok=True)
@@ -436,11 +522,16 @@ home_col, away_col = st.columns(2, gap="large")
 with home_col:
     st.markdown(f"### Home: {fixture['home_team']}")
     st.caption(f"Using FPL roster: {home_fpl_name}")
-    home_selected = render_xi(home_players, str(fixture["home_team"]), f"home_{key_suffix}", old_home)
+    home_selected, home_roles = render_xi(
+    home_players,
+    str(fixture["home_team"]),
+    f"home_{key_suffix}",
+    old_home,
+)
 with away_col:
     st.markdown(f"### Away: {fixture['away_team']}")
     st.caption(f"Using FPL roster: {away_fpl_name}")
-    away_selected = render_xi(away_players, str(fixture["away_team"]), f"away_{key_suffix}", old_away)
+    away_selected, away_roles = render_xi(away_players, str(fixture["away_team"]), f"away_{key_suffix}", old_away)
 
 notes = st.text_area("Notes (optional; e.g. source or correction reason)", key=f"notes_{key_suffix}")
 if lineup_type == "official_lineup":
@@ -470,114 +561,169 @@ with status_col1:
 with status_col2:
     st.write(("✅ " if away_valid else "⚠️ ") + f"Away: {away_message}")
 
-if st.button("Confirm and save lineup snapshot", type="primary", disabled=not (home_valid and away_valid and acknowledged)):
-    # Re-read just before appending so a stale page is less likely to reuse a revision number.
+if st.button(
+    "Confirm and save lineup snapshot",
+    type="primary",
+    disabled=not (home_valid and away_valid and acknowledged),
+):
+    # Re-read before appending to avoid reusing a stale revision number.
     fresh_records = read_confirmed_records()
-    latest = latest_record_for_match(fresh_records, int(selected_match_id), lineup_type)
+    latest = latest_record_for_match(
+        fresh_records,
+        int(selected_match_id),
+        lineup_type,
+    )
     latest_revision = int(latest.get("revision", 0)) if latest else 0
+
     if latest_revision != current_revision:
-        st.error("A newer lineup revision was saved after this page loaded. Refresh the page before saving.")
+        st.error(
+            "A newer lineup revision was saved after this page loaded. "
+            "Refresh the page before saving."
+        )
+
     else:
         revision = current_revision + 1
+
         record = {
             "schema_version": 2,
             "lineup_type": lineup_type,
             "match_id": int(fixture["match_id"]),
             "season": str(fixture["season"]),
-            "matchweek": None if pd.isna(fixture["matchweek"]) else int(fixture["matchweek"]),
+            "matchweek": (
+                None if pd.isna(fixture["matchweek"])
+                else int(fixture["matchweek"])
+            ),
             "kickoff_utc": utc_iso(fixture["kickoff_utc"]),
+
+            # Fixture and roster metadata
             "home_team": str(fixture["home_team"]),
             "away_team": str(fixture["away_team"]),
             "fixture_status_at_confirmation": str(fixture["status"]),
             "fpl_season": FPL_SEASON,
-            "home_fpl_team": {"id": home_fpl_id, "name": home_fpl_name},
-            "away_fpl_team": {"id": away_fpl_id, "name": away_fpl_name},
-            "home_lineup": serialise_lineup(home_selected, home_players),
-            "away_lineup": serialise_lineup(away_selected, away_players),
-            "lineup_source": "manual_projected_xi" if lineup_type == "projected" else "manual_official_starting_xi",
+            "home_fpl_team": {
+                "id": int(home_fpl_id),
+                "name": str(home_fpl_name),
+            },
+            "away_fpl_team": {
+                "id": int(away_fpl_id),
+                "name": str(away_fpl_name),
+            },
+
+            # Starting XIs, including match-specific playing positions
+            "home_lineup": serialise_lineup(
+                home_selected, home_players, home_roles
+            ),
+            "away_lineup": serialise_lineup(
+                away_selected, away_players, away_roles
+            ),
+
+            "lineup_source": (
+                "manual_projected_xi"
+                if lineup_type == "projected"
+                else "manual_official_starting_xi"
+            ),
             "revision": revision,
-            "supersedes_revision": current_revision if current_revision else None,
+            "supersedes_revision": (
+                current_revision if current_revision else None
+            ),
             "confirmed_at_utc": datetime.now(timezone.utc).isoformat(),
-            "confirmation_check": bool(acknowledged) if lineup_type == "official_lineup" else False,
+            "confirmation_check": (
+                bool(acknowledged)
+                if lineup_type == "official_lineup"
+                else False
+            ),
             "user_acknowledged_lineup_type": bool(acknowledged),
             "notes": notes.strip() or None,
             "forecast_status": "not_generated",
         }
+
         try:
             save_append_only(record)
-            existing_record = record
-            current_revision = revision
+
         except OSError as exc:
             st.error(f"Could not save the lineup snapshot: {exc}")
+
         else:
+            existing_record = record
+            current_revision = revision
+
             st.success(
-                f"Saved {lineup_type.replace('_', ' ')} snapshot "
-                f"revision {revision}."
+                f"Saved {lineup_type.replace('_', ' ')} "
+                f"snapshot revision {revision}."
             )
 
-    st.json({
-        "match_id": record["match_id"],
-        "revision": record["revision"],
-        "confirmed_at_utc": record["confirmed_at_utc"],
-        "home_starters": len(record["home_lineup"]),
-        "away_starters": len(record["away_lineup"]),
-    })
+            # Show the metadata as well, so you can verify it was saved.
+            st.json({
+                "match_id": record["match_id"],
+                "lineup_type": record["lineup_type"],
+                "revision": record["revision"],
+                "home_team": record["home_team"],
+                "away_team": record["away_team"],
+                "home_fpl_team": record["home_fpl_team"],
+                "away_fpl_team": record["away_fpl_team"],
+                "confirmed_at_utc": record["confirmed_at_utc"],
+                "home_starters": len(record["home_lineup"]),
+                "away_starters": len(record["away_lineup"]),
+            })
 
-    command = [
-        sys.executable,
-        "-m",
-        "src.generate_lineup_forecast",
-        "--match-id",
-        str(record["match_id"]),
-        "--lineup-type",
-        lineup_type,
-        "--save",
-    ]
+            # Generate the experimental forecast only after a successful save.
+            command = [
+                sys.executable,
+                "-m",
+                "src.generate_context_lineup_forecast",
+                "--match-id",
+                str(record["match_id"]),
+                "--lineup-type",
+                lineup_type,
+                "--save",
+            ]
 
-    try:
-        with st.spinner(
-            "Lineup saved. Generating the experimental forecast..."
-        ):
-            result = subprocess.run(
-                command,
-                cwd=str(PROJECT_ROOT),
-                capture_output=True,
-                text=True,
-                timeout=300,
-                check=False,
-            )
+            try:
+                with st.spinner(
+                    "Lineup saved. Generating the experimental forecast..."
+                ):
+                    result = subprocess.run(
+                        command,
+                        cwd=str(PROJECT_ROOT),
+                        capture_output=True,
+                        text=True,
+                        timeout=300,
+                        check=False,
+                    )
 
-    except subprocess.TimeoutExpired:
-        st.error(
-            "The lineup was saved, but forecast generation timed out. "
-            "You can rerun the generator manually."
-        )
+            except subprocess.TimeoutExpired:
+                st.error(
+                    "The lineup was saved, but forecast generation timed out. "
+                    "You can rerun the generator manually."
+                )
 
-    except OSError as exc:
-        st.error(
-            "The lineup was saved, but the forecast generator "
-            f"could not be started: {exc}"
-        )
+            except OSError as exc:
+                st.error(
+                    "The lineup was saved, but the forecast generator "
+                    f"could not be started: {exc}"
+                )
 
-    else:
-        output = "\n".join(
-            part for part in (result.stdout, result.stderr) if part
-        ).strip()
+            else:
+                output = "\n".join(
+                    part
+                    for part in (result.stdout, result.stderr)
+                    if part
+                ).strip()
 
-        if result.returncode == 0:
-            st.success(
-                "Experimental forecast generated or already up to date. "
-                "Refresh Premier Quant to view it."
-            )
-        else:
-            st.error(
-                "The lineup was saved, but forecast generation failed. "
-                "Your existing locked predictions remain unchanged."
-            )
+                if result.returncode == 0:
+                    st.success(
+                        "Experimental forecast generated or already up to date. "
+                        "Refresh Premier Quant to view it."
+                    )
+                else:
+                    st.error(
+                        "The lineup was saved, but forecast generation failed. "
+                        "Your existing locked predictions remain unchanged."
+                    )
 
-        if output:
-            with st.expander("Forecast generator output"):
-                st.code(output[-12000:], language="text")
+                if output:
+                    with st.expander("Forecast generator output"):
+                        st.code(output[-12000:], language="text")
 
 with st.expander(f"Latest saved {lineup_type.replace(chr(95), chr(32))} snapshot details", expanded=False):
     if existing_record:

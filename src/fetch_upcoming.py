@@ -3,7 +3,7 @@ import json
 import requests
 import pandas as pd
 from datetime import datetime
-from db import get_db_connection
+from src.db import get_db_connection
 from dotenv import load_dotenv
 
 load_dotenv()

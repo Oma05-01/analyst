@@ -6,4 +6,5 @@ python -m src.score_predictions
 
 (sports) PS C:\Users\user\PycharmProjects\football-analyst-agent> uvicorn src.api.main:app --reload
 (sports) PS C:\Users\user\PycharmProjects\football-analyst-agent\frontend> npm run dev
+python src/pipeline_runner.py - to generate predictions for that match day
 (sports) PS C:\Users\user\PycharmProjects\football-analyst-agent> streamlit run src/lineup_entry_app.py
